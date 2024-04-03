@@ -3,7 +3,7 @@ import cityJson from "../assets/city.json"
 // 滾輪防抖以及滾輪當前位置
 let lastTime = 0
 let currentIdx = 0
-const debounceTime = 500;
+const debounceTime = 700;
 // 觸碰滑動事件
 let startX = 0;
 let startY = 0; 
@@ -36,14 +36,12 @@ export const touchEventEnd = (ev)=>{
     }
     let sideBar = document.getElementById("cityList")
     sideBar.childNodes.forEach((ele,idx)=>{
-      if(idx === currentIdx){
-        ele.classList.remove("text-sky-900")
-        ele.classList.add("text-white")
-      }else{
-        ele.classList.remove("text-white")
-        ele.classList.add("text-sky-900")
-      }
+      ele.classList.remove("text-white")
+      ele.classList.add("text-sky-900")
     })
+    sideBar.childNodes[currentIdx].classList.remove("text-sky-900")
+    sideBar.childNodes[currentIdx].classList.add("text-white")
+
     lastTime = currentTime;
   } 
 }
