@@ -27,64 +27,49 @@ const setThreeJS = ()=>{
   const canvas = document.querySelector('canvas.webgl')
   // Render
   const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+    canvas: canvas,
+    alpha : true
   })
+  renderer.setClearColor(0x000000, 0);
   renderer.setSize(window.innerWidth,window.innerHeight)
 
   // Scene
   const scene = new THREE.Scene();
   
   // Light
-  const light = new THREE.AmbientLight( 0x404040 )
-  scene.add(light)
+  const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x080820, 0.5);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+  directionalLight.position.set(1, 2, 3); 
+  scene.add( hemisphereLight , directionalLight );
   
   //Camera 
-  const camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight , 0.1,1000);
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
   camera.position.z = 5
   scene.add(camera)
 
   // Control
-  // const controls = new OrbitControls( camera, renderer.domElement );
-  // controls.update();
-
-  const vertexShader = `
-    uniform vec2 mousePos;
-    void main() {
-      vec3 newPos = position + vec3(mousePos.x * 0.9, mousePos.y * 0.9, 0.0);
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
-    }
-  `;
-
-  const fragmentShader = `
-    void main() {
-      gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0); // 白色
-    }
-  `;
-
-  const shaderMaterial = new THREE.ShaderMaterial({
-    vertexShader,
-    fragmentShader,
-    uniforms: {
-      mousePos: { value: new THREE.Vector2(0, 0) }
-    }
-  });
+  const controls = new OrbitControls( camera, renderer.domElement );
+  controls.update();
 
   // Obj
-  const geometry = new THREE.BoxGeometry(1, 1, 1)
-  // const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-  const mesh = new THREE.Mesh(geometry, shaderMaterial)
+  const geometry = new THREE.BoxGeometry(3, 3, 3)
+  const material = new THREE.MeshStandardMaterial({ color: 0xfcd073 })
+  const mesh = new THREE.Mesh(geometry, material)
+  mesh.scale.set(1.5,1.5,1.5)
+  mesh.rotation.y = 15
+  mesh.rotation.x = 10
   scene.add(mesh)
-
-  document.addEventListener('mousemove', (event) => {
-    shaderMaterial.uniforms.mousePos.value.x = (event.clientX / window.innerWidth) * 2 - 1;
-    shaderMaterial.uniforms.mousePos.value.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  });
 
   renderer.render(scene, camera)
   
   const animate = ()=>{
     requestAnimationFrame( animate );
-    // controls.update();
+    controls.update();
     renderer.render( scene, camera );
   }
   animate()
