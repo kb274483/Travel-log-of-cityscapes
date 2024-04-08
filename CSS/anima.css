@@ -1,0 +1,28 @@
+.scroll-out-up {
+  animation: scrollOutUp 0.5s forwards;
+}
+
+.scroll-in-down {
+  animation: scrollInDown 0.5s forwards;
+}
+
+@keyframes scrollOutUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes scrollInDown {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

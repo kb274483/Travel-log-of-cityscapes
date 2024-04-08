@@ -4,17 +4,21 @@ import { scrollEvent } from "./mouseScroll";
 import { touchEventStart,touchEventEnd } from "./touchEvent";
 import cityJson from "../assets/city.json"
 
-
-const init =()=>{
+const init = ()=>{
   document.addEventListener('wheel',scrollEvent)
   document.addEventListener('touchstart',touchEventStart)
   document.addEventListener('touchend',touchEventEnd)
 
+  let cityName = document.getElementById("cityName")
+  let photo = document.getElementById("photo")
   let sideBar = document.getElementById("cityList")
   let sideBarStyle = ["w-full","text-sky-900","text-lg","font-bold","transition-all","duration-500","ease-linear"]
+
+  cityName.textContent = cityJson.cityArr[0].name
+  photo.src = cityJson.cityArr[0].src
   cityJson.cityArr.forEach((city,idx)=>{
     let div = document.createElement('div')
-    div.textContent = city
+    div.textContent = city.name
     div.classList.add(...sideBarStyle)
     if(idx === 0) {
       div.classList.remove("text-sky-900")

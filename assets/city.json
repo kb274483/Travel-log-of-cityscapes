@@ -1,8 +1,16 @@
-{"cityArr" : [
-  "Nha Trang","Cebu","Kyoto","Osaka","Zagreb",
-  "Dubrovnik","Budapest","El Nido","Amsterdam",
-  "Alkmaar","Zaandam","Giethoorn","Bruxelles",
-  "Brugge","Gent","Dinant","Alaçatı","Ephesus",
-  "Şirince","Pamukkale","Antalya","Konya","Göreme",
-  "Istanbul"
-] }
+{
+  "cityArr": [
+    {"name": "Cebu", "src": "https://live.staticflickr.com/4157/33609569973_691751205e_h.jpg"},
+    {"name": "Zagreb", "src": "https://live.staticflickr.com/1730/40765004400_d8c1239fc3_b.jpg"},
+    {"name": "Dubrovnik", "src": "https://live.staticflickr.com/1750/27703994247_3cec5712c0_h.jpg"},
+    {"name": "Budapest", "src": "https://live.staticflickr.com/1732/27704264117_ccaaa75cd0_h.jpg"},
+    {"name": "Amsterdam", "src": "https://live.staticflickr.com/65535/48841149376_f58e416539_h.jpg"},
+    {"name": "Alkmaar", "src": "https://live.staticflickr.com/65535/48840778753_5bc38676e4_b.jpg"},
+    {"name": "Zaandam", "src": "https://live.staticflickr.com/65535/48841143396_e1237b46c7_h.jpg"},
+    {"name": "Giethoorn", "src": "https://live.staticflickr.com/65535/48841141056_baee28f423_h.jpg"},
+    {"name": "Bruxelles", "src": "https://live.staticflickr.com/65535/48841290392_142f2d8cb4_h.jpg"},
+    {"name": "Brugge", "src": "https://live.staticflickr.com/65535/48841302507_5567bdea6f_h.jpg"},
+    {"name": "Gent", "src": "https://live.staticflickr.com/65535/48840752973_c7dedb788c_h.jpg"},
+    {"name": "Dinant", "src": "https://live.staticflickr.com/65535/48841119036_3af24b4146_h.jpg"}
+  ]
+}

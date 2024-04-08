@@ -4,8 +4,10 @@ import cityJson from "../assets/city.json"
 let lastTime = 0
 let currentIdx = 0
 const debounceTime = 700;
+// 延遲
+const delay = (sec) => new Promise(resolve => setTimeout(resolve, sec));
 
-export const scrollEvent = (ev)=>{
+export const scrollEvent = async (ev)=>{
   const currentTime = new Date().getTime();
   if (currentTime - lastTime < debounceTime) {
     return;
@@ -17,6 +19,21 @@ export const scrollEvent = (ev)=>{
     if(currentIdx <= 0) return
     currentIdx--
   }
+  let cityName = document.getElementById("cityName")
+  let photo = document.getElementById("photo")
+  photo.classList.remove("scroll-in-down")
+  photo.classList.add("scroll-out-up")
+  cityName.classList.remove("scroll-in-down")
+  cityName.classList.add("scroll-out-up")
+  await delay(400);
+  photo.src = cityJson.cityArr[currentIdx].src
+  cityName.textContent = cityJson.cityArr[currentIdx].name
+  await delay(400);
+  photo.classList.remove("scroll-out-up")
+  photo.classList.add("scroll-in-down")
+  cityName.classList.remove("scroll-out-up")
+  cityName.classList.add("scroll-in-down")
+
   let sideBar = document.getElementById("cityList")
   sideBar.childNodes.forEach((ele,idx)=>{
     ele.classList.remove("text-white")
